@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusCare | Student Problem Reporting</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f7fc;
+            color: #17233c;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 7%;
+            background: white;
+            box-shadow: 0 2px 15px #14213d12;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2457d6;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #46536b;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #2457d6;
+        }
+
+        .nav-button {
+            background: #2457d6;
+            color: white !important;
+            padding: 11px 18px;
+            border-radius: 8px;
+        }
+
+        /* Hero section */
+        .hero {
+            padding: 85px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 45px;
+            background: linear-gradient(120deg, #edf3ff, #f7f9ff);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #2457d6;
+            background: #dfe9ff;
+            padding: 9px 14px;
+            border-radius: 25px;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #2457d6;
+        }
+
+        .hero p {
+            color: #647089;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+
+        .primary-button {
+            display: inline-block;
+            background: #2457d6;
+            color: white;
+            text-decoration: none;
+            padding: 15px 23px;
+            border-radius: 9px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .primary-button:hover {
+            background: #1744b5;
+        }
+
+        .hero-card {
+            min-width: 280px;
+            max-width: 360px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 15px 45px #1a326012;
+        }
+
+        .hero-icon {
+            font-size: 45px;
+            margin-bottom: 18px;
+        }
+
+        .hero-card h2 {
+            margin-bottom: 12px;
+            font-size: 23px;
+        }
+
+        .hero-card p {
+            margin-bottom: 20px;
+        }
+
+        .status {
+            background: #e5f8ec;
+            color: #168346;
+            padding: 10px 13px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        /* Statistics */
+        .stats {
+            padding: 35px 7%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid #e8edf5;
+        }
+
+        .stat-card p {
+            color: #758098;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card h2 {
+            color: #2457d6;
+            font-size: 30px;
+        }
+
+        /* Complaint section */
+        .section {
+            padding: 45px 7% 75px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: #758098;
+            line-height: 1.7;
+        }
+
+        .complaint-box {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border: 1px solid #e8edf5;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px #14213d08;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 9px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dce2ed;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2457d6;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .complaint-box .primary-button {
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .message {
+            margin-top: 15px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #17233c;
+            color: #dce5fa;
+            font-size: 14px;
+        }
+
+        /* Mobile responsive design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 18px 5%;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .nav-links {
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding: 55px 5%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-card {
+                max-width: none;
+            }
+
+            .stats {
+                padding: 25px 5%;
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 40px 5% 55px;
+            }
+
+            .section-heading h2 {
+                font-size: 27px;
+            }
+
+            .complaint-box {
+                padding: 22px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <div class="logo">CampusCare.</div>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#statistics">Dashboard</a>
+            <a href="#report">Report Problem</a>
+            <a href="#report" class="nav-button">Get Started</a>
+        </nav>
+    </header>
+
+    <!-- Homepage hero section -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="tag">YOUR VOICE MATTERS</span>
+
+                <h1>
+                    A Better Campus<br>
+                    Starts With <span>You.</span>
+                </h1>
+
+                <p>
+                    Report college problems, share your concerns, and help
+                    create a better learning environment. Your feedback can
+                    make a real difference on campus.
+                </p>
+
+                <a href="#report" class="primary-button">
+                    Report a Problem &rarr;
+                </a>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-icon">🎓</div>
+                <h2>Your Campus, Your Voice</h2>
+                <p>
+                    From classroom facilities to technical issues,
+                    let us know what needs attention.
+                </p>
+                <div class="status">✓ Student feedback matters</div>
+            </div>
+        </section>
+
+        <!-- Dashboard statistics -->
+        <section class="stats" id="statistics">
+            <div class="stat-card">
+                <p>Total Reports</p>
+                <h2 id="totalReports">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Pending Reports</p>
+                <h2 id="pendingReports">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Resolved Reports</p>
+                <h2 id="resolvedReports">0</h2>
+            </div>
+        </section>
+
+        <!-- Complaint form -->
+        <section class="section" id="report">
+            <div class="section-heading">
+                <h2>Report a Problem</h2>
+                <p>
+                    Tell us about an issue so the concerned team can
+                    review it.
+                </p>
+            </div>
+            <!-- new section class added -->
+
+            
+
+            <form class="complaint-box" id="complaintForm">
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="studentEmail">College Email</label>
+                    <input
+                        type="email"
+                        id="studentEmail"
+                        placeholder="student@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Problem Category</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Classroom">Classroom</option>
+                        <option value="Technology">Technology / Wi-Fi</option>
+                        <option value="Library">Library</option>
+                        <option value="Hostel">Hostel</option>
+                        <option value="Cleanliness">Cleanliness</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="problemTitle">Problem Title</label>
+                    <input
+                        type="text"
+                        id="problemTitle"
+                        placeholder="Briefly describe the issue"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Problem Description</label>
+                    <textarea
+                        id="description"
+                        placeholder="Explain the problem in detail..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="primary-button">
+                    Submit Report
+                </button>
+
+                <p id="formMessage" class="message" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CampusCare. Student voices, stronger campuses.</p>
+    </footer>
+
+    <script>
+        // Demo statistics: abhi database se connected nahi hain
+        let total = 0;
+        let pending = 0;
+        let resolved = 0;
+
+        // Form ko select karna
+        const complaintForm = document.getElementById("complaintForm");
+        const formMessage = document.getElementById("formMessage");
+
+        // Submit button click hone par
+        complaintForm.addEventListener("submit", function (event) {
+            // Page reload hone se rokna
+            event.preventDefault();
+
+            // Form ki values lena
+            const studentName =
+                document.getElementById("studentName").value.trim();
+
+            const studentEmail =
+                document.getElementById("studentEmail").value.trim();
+
+            const category =
+                document.getElementById("category").value;
+
+            const problemTitle =
+                document.getElementById("problemTitle").value.trim();
+
+            const description =
+                document.getElementById("description").value.trim();
+
+            // Extra validation
+            if (
+                !studentName ||
+                !studentEmail ||
+                !category ||
+                !problemTitle ||
+                !description
+            ) {
+                formMessage.style.color = "#c62828";
+                formMessage.textContent =
+                    "Please fill in all the fields.";
+                return;
+            }
+
+            // Demo mode: abhi report sirf is page par count hoti hai
+            total++;
+            pending++;
+
+            document.getElementById("totalReports").textContent = total;
+            document.getElementById("pendingReports").textContent = pending;
+            document.getElementById("resolvedReports").textContent = resolved;
+
+            formMessage.style.color = "#168346";
+            formMessage.textContent =
+                "Thank you, " + studentName +
+                "! Your demo report was accepted. " +
+                "Database saving will be added in a later step.";
+
+            // Form ko saaf karna
+            complaintForm.reset();
+        });
+    </script>
+
+</body>
+</html>
+```
